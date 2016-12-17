@@ -1,0 +1,6 @@
+assets/.idea/
+assets/templates_c/
+.idea/
+logs/
+composer.lock
+vendor/
