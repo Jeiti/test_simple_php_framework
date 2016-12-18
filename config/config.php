@@ -1,8 +1,8 @@
 <?php
 define("DBHOSTNAME", "localhost");
 define("DBUSER", "root");
-define("DBPASSWORD", "root");
-define("DBNAME", "simple_php_framework_dev");
+define("DBPASSWORD", "123");
+define("DBNAME", "test_simple_php_framework_dev");
 define("NEWSPERPAGE", "3");//сколько новостей выводить на странице
 define("OUTPUTNEWS", "5");//сколько кнопок пагинации выводить
 define("DEBUG", true);//development-разработка или production-использование

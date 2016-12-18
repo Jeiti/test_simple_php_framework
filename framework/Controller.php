@@ -4,9 +4,9 @@ namespace framework;
 
 class Controller
 {
-    private $abstractFactory;
-    private $model;
-    private $view;
+    protected $abstractFactory;
+    protected $model;
+    protected $view;
 
     public function __construct(ControllerFactory $controllerFactory)
     {

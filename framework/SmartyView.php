@@ -15,7 +15,7 @@ class SmartyView extends View
         $this->controllerName = $_controllerName;
     }
 
-    public function render($action, $params)
+    public function render($action, Array $params=[])
     {
         if (!empty($params))
             foreach ($params as $key => $val)

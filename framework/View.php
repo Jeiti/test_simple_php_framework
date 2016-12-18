@@ -11,5 +11,5 @@ namespace framework;
 // TODO: можно сделать интерфейсом
 abstract class View
 {
-    abstract public function render($action, $params);
+    abstract public function render($action, Array $params=[]);
 }
