@@ -1,7 +1,9 @@
 <?php
 
 namespace app\controllers;
-class SiteController
+use framework\Controller;
+
+class SiteController extends Controller
 {
     public function actionIndex() {
         echo 'Test';
