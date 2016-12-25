@@ -9,33 +9,40 @@
 namespace framework;
 
 use ArrayObject;
+use framework\observers\IObservable;
 
-class Model extends \ActiveRecord\Model implements IObservable
+class Model extends \ActiveRecord\Model
 {
     private $value;
+    private $observable;
 
-    public function setValue($_value) {
-        $this->value = $_value;
-        $this->notifyObservers();
-    }
-
-    public function getValue() {
-        return $this->value;
+//    Не использовать конструктор
+    public function __construct(IObservable $_observable)
+    {
+        $this->observable = $_observable;
     }
 
-    public function addObserver(IObserver $_observer)
+    public function setValue($_value)
     {
-        $this->observers[]=$_observer;
-    }
-    public function removeObserver(IObserver $_observer)
-    {
-        unset($_observer, $this->observers);
-    }
-    public function notifyObservers()
-    {
-        $arr = new ArrayObject($this->observers);
-        for ($i=$arr->getIterator();$i->valid(); $i->next()){
-            $i->current()->update($this);
+        if(!$_value){
+            throw new \Exception('Вы не передали никакого значения');
+        } else {
+            $this->value = $_value;
+            $this->observable->notifyObservers();
         }
     }
+
+    public function getValue()
+    {
+        return $this->value;
+    }
+}
+
+
+try{
+    $model = new Model();
+    $model->setValue();
+}
+catch (\Exception $e){
+    echo $e->getMessage();
 }

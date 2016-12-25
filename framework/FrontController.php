@@ -1,6 +1,8 @@
 <?php
 
 namespace framework;
+use framework\loggers\FileLogger;
+use framework\observers\ModelObservable;
 
 class FrontController
 {
@@ -30,11 +32,15 @@ class FrontController
         $actionName = ucfirst(strtolower($actionName));
         $actionName = 'action'.$actionName;
 
+        $modelObservable = new ModelObservable();
+        $logger = new FileLogger($_SERVER['DOCUMENT_ROOT'] . '/logs/app.log');
+        $modelObservable->addObserver($logger);
+
         $controllerClass = new \ReflectionClass($controllerName);
         $controllerFactoryClass = new \Reflectionclass($controllerFactoryName);
         // TODO: добавить вызов исключения, если метода в контроллере нет
         if ($controllerClass->isInstantiable()) {
-            $controllerFactory = $controllerFactoryClass->newInstance();
+            $controllerFactory = $controllerFactoryClass->newInstance($modelObservable);
             $controller = $controllerClass->newInstance($controllerFactory);
             if (method_exists($controllerName, $actionName)) {
                 $method = new \ReflectionMethod($controllerName, $actionName);
@@ -43,3 +49,11 @@ class FrontController
         }
     }
 }
+
+
+
+//TODO: Создать класс webApplication куда поместить все настройки.
+//TODO: Применить паттерн "Стратегия" - есть 2 способа генерация паролей, выбрать один из них (md5, sha1)
+//TODO: Реализовать DbLogger
+//TODO: Применить структурные шаблоны - Фасад или Декоратор или Адаптер
+//TODO: почитать про рефакторинг

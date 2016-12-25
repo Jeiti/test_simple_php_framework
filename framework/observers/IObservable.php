@@ -6,7 +6,7 @@
  * Time: 8:58
  */
 
-namespace framework;
+namespace framework\observers;
 
 
 interface IObservable

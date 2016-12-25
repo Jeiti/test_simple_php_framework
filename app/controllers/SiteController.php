@@ -13,7 +13,9 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionShow() {
+    public function actionShow()
+    {
+        $this->model->setValue('test');
         echo 'Show';
     }
 }
