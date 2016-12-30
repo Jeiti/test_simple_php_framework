@@ -3,7 +3,6 @@
 namespace app\factories;
 
 use app\models\SiteModel;
-use framework\observers\IObservable;
 
 /**
  * Created by PhpStorm.
@@ -13,16 +12,15 @@ use framework\observers\IObservable;
  */
 class SiteControllerFactory extends \framework\ControllerFactory
 {
-    private $observable;
 
-    public function __construct(IObservable $_observable)
+
+    public function __construct()
     {
-        $this->observable = $_observable;
     }
 
     public function createModel()
     {
-        return new SiteModel($this->observable);
+        return new SiteModel();
     }
 
     public function createView()
