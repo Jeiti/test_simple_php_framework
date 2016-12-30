@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.31, created on 2016-12-31 00:19:11
+/* Smarty version 3.1.31, created on 2016-12-31 01:35:23
   from "/home/evgen/www/tests/test_simple_php_framework/app/views/site/index.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5866cf4f047db8_75912052',
+  'unifunc' => 'content_5866e12ba424a3_58694927',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5866cf4f047db8_75912052 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5866e12ba424a3_58694927 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <h3>Index</h3>
 
