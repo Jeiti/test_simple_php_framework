@@ -21,7 +21,7 @@ class NewsController
 
     public function actionIndex()
     {
-        $newsControllerService = new NewsControllerService();
-        $newsControllerService->getAllNewsFromDataBase();
+        $service = new NewsControllerService();
+        $service->getAllNewsFromDataBase();
     }
 }

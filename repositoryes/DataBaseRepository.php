@@ -14,6 +14,8 @@ use events\Event;
 
 class DataBaseRepository implements NewsRepositoryes
 {
+    use DataBaseRepositoryTrait;
+
     const CONNECTION_WITH_DATA_BASE_START_EVENT = 'linked';
     const CONNECTION_WITH_DATA_BASE_CLOSE_EVENT = 'closed';
 
@@ -43,11 +45,6 @@ class DataBaseRepository implements NewsRepositoryes
             throw new LinkException ('Нет подключения к БД');
 
         $this->eventHandler->trigger(self::CONNECTION_WITH_DATA_BASE_START_EVENT, new Event($this));
-    }
-
-    public function getTheQueryResult()
-    {
-        $this->query = mysqli_query($this->linkToDataBase,"SELECT * FROM site");
     }
 
     public function processToQueryResult()
