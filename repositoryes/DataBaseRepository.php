@@ -45,7 +45,7 @@ class DataBaseRepository implements NewsRepositoryes
 
     public function getLinkToDataBase()
     {
-        $this->linkToDataBase= mysqli_connect(DBHOSTNAME,DBUSER,DBPASSWORD,DBNAME);
+        $this->linkToDataBase= mysqli_connect(DBHOSTNAM,DBUSER,DBPASSWORD,DBNAME);
         if(!$this->linkToDataBase)
             throw new LinkException ('Нет подключения к БД');
 

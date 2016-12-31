@@ -14,14 +14,15 @@ use services\news_controller\NewsControllerService;
 
 class NewsController
 {
+    private $service;
+
     public function __construct()
     {
-
+        $this->service = new NewsControllerService();
     }
 
     public function actionIndex()
     {
-        $service = new NewsControllerService();
-        $service->getAllNewsFromDataBase();
+        $this->service->getAllNewsFromDataBase();
     }
 }

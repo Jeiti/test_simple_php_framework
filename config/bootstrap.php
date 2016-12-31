@@ -11,6 +11,10 @@ function filesAutoload($classname){
 }
 spl_autoload_register("filesAutoload");
 
+set_exception_handler(function (Exception $exception) {
+    echo $exception->getMessage();
+});
+
 // TODO: можно создать класс WebApplication
 \ActiveRecord\Config::initialize(function($cfg)
 {
