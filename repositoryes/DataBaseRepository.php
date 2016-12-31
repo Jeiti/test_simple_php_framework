@@ -7,6 +7,8 @@
  */
 
 namespace repositoryes;
+use observers\NewsObserver;
+use observers\ObserverCollection;
 use repositoryes\NewsRepositoryes;
 use exceptions\LinkException;
 use events\EventHandler;
@@ -22,18 +24,21 @@ class DataBaseRepository implements NewsRepositoryes
     private $eventHandler;
     private $linkToDataBase;
     private $query;
+    private $observerCollection;
 
     public function getAllNews()
     {
         $this->eventHandler = new EventHandler();
         $this->eventHandler->on(self::CONNECTION_WITH_DATA_BASE_START_EVENT, function (Event $event){
             echo "DataBase connection has status -> 'linked'" . '<br>';
+            $this->observerCollection = new ObserverCollection(new NewsObserver());
         });
         $this->getLinkToDataBase();
         $this->getTheQueryResult();
         $this->processToQueryResult();
         $this->eventHandler->on(self::CONNECTION_WITH_DATA_BASE_CLOSE_EVENT, function (Event $event){
-            echo "DataBase connection has status -> 'closed'";
+            echo "DataBase connection has status -> 'closed'" . '<br>';
+            $this->observerCollection->notify();
         });
         $this->closeConnect();
     }
