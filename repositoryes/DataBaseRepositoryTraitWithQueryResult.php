@@ -9,7 +9,7 @@
 namespace repositoryes;
 
 
-trait DataBaseRepositoryTrait
+trait DataBaseRepositoryTraitWithQueryResult
 {
     public function getTheQueryResult()
     {

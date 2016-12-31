@@ -16,7 +16,7 @@ use events\Event;
 
 class DataBaseRepository implements NewsRepositoryes
 {
-    use DataBaseRepositoryTrait;
+    use DataBaseRepositoryTraitWithQueryResult;
 
     const CONNECTION_WITH_DATA_BASE_START_EVENT = 'linked';
     const CONNECTION_WITH_DATA_BASE_CLOSE_EVENT = 'closed';
