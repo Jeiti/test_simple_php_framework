@@ -6,7 +6,7 @@
  * Time: 3:03
  */
 
-namespace repositoryes;
+namespace app\repositoryes;
 
 
 trait DataBaseRepositoryTraitWithQueryResult

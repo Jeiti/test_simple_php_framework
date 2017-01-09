@@ -1,10 +1,15 @@
 <?php
 header("Content-type:text/html; charset=utf-8");
-require_once ("config/config.php");
-require_once ('config/bootstrap.php');
 
-use framework\FrontController;
+//use framework\FrontController;
+//use Pimple\Container;
 
+require('vendor/pimple/pimple/src/Pimple/Container.php');
+require('framework/FrontController.php');
+require('vendor/autoload.php');
+$container = new Container();
+require('config/params.php');
+require('config/services.php');
 
-$controller = FrontController::getInstance();
+$controller = new FrontController($container);
 $controller->start();

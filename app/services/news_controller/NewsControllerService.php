@@ -6,11 +6,11 @@
  * Time: 1:38
  */
 
-namespace services\news_controller;
+namespace app\services\news_controller;
 
-use repositoryes\DataBaseRepository;
-use exceptions\LinkException;
-use repositoryes\NewsRepositoryes;
+use app\repositoryes\DataBaseRepository;
+use app\exceptions\LinkException;
+use app\repositoryes\NewsRepositoryes;
 
 
 

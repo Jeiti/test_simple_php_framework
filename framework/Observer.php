@@ -6,7 +6,7 @@
  * Time: 3:14
  */
 
-namespace app\observers;
+namespace framework;
 
 
 interface Observer

@@ -6,13 +6,13 @@
  * Time: 0:13
  */
 
-namespace services\site_controller;
+namespace app\services\site_controller;
 use app\controllers\SiteController;
-use events\EventHandler;
-use events\Event;
-use services\site_controller\SiteControllerActionShowServiceEvents;
-use services\site_controller\SiteControllerActionShowServiceModel;
-use exceptions\ExceptionForModelGetValue;
+use app\events\EventHandler;
+use framework\Event;
+use app\services\site_controller\SiteControllerActionShowServiceEvents;
+use app\services\site_controller\SiteControllerActionShowServiceModel;
+use app\exceptions\ExceptionForModelGetValue;
 
 class SiteControllerActionShowService
 {

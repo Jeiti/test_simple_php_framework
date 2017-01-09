@@ -6,7 +6,7 @@
  * Time: 23:11
  */
 
-namespace app\events;
+namespace framework;
 
 
 class Event

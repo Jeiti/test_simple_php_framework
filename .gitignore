@@ -1,6 +1,6 @@
 assets/.idea/
 assets/templates_c/
 .idea/
-logs/
+runtime/logs/
 composer.lock
 vendor/

@@ -6,7 +6,7 @@
  * Time: 1:56
  */
 
-namespace repositoryes;
+namespace app\repositoryes;
 
 
 interface NewsRepositoryes

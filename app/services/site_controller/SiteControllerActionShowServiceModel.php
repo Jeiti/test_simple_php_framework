@@ -6,7 +6,7 @@
  * Time: 0:42
  */
 
-namespace services\site_controller;
+namespace app\services\site_controller;
 
 
 class SiteControllerActionShowServiceModel

@@ -6,15 +6,15 @@
  * Time: 1:47
  */
 
-namespace repositoryes;
+namespace app\repositoryes;
 use framework\Model;
-use observers\NewsObserver;
-use observers\Observer;
-use observers\ObserverCollection;
-use repositoryes\NewsRepositoryes;
-use exceptions\LinkException;
-use events\EventHandler;
-use events\Event;
+use app\observers\NewsObserver;
+use framework\Observer;
+use app\observers\ObserverCollection;
+use app\repositoryes\NewsRepositoryes;
+use app\exceptions\LinkException;
+use app\events\EventHandler;
+use framework\Event;
 
 class DataBaseRepository implements NewsRepositoryes
 {

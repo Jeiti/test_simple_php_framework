@@ -6,7 +6,7 @@
  * Time: 2:11
  */
 
-namespace exceptions;
+namespace app\exceptions;
 
 
 class LinkException extends \Exception

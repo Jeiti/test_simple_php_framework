@@ -4,12 +4,6 @@ namespace app\factories;
 
 use app\models\NewsModel;
 
-/**
- * Created by PhpStorm.
- * User: redex
- * Date: 17.12.16
- * Time: 21:48
- */
 class NewsControllerFactory extends \framework\ControllerFactory
 {
 

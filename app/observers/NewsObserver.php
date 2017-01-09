@@ -6,8 +6,8 @@
  * Time: 3:15
  */
 
-namespace observers;
-use observers\Observer;
+namespace app\observers;
+use framework\Observer;
 
 
 class NewsObserver implements Observer

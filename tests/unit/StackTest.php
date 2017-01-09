@@ -3,7 +3,6 @@
 
 class StackTest extends PHPUnit_Framework_TestCase
 {
-
     public function testInit(){
         $arr = [];
         $this->assertEquals(1,count($arr));
@@ -20,8 +19,10 @@ class StackTest extends PHPUnit_Framework_TestCase
     }
 }
 
-//TODO: Протестировать собственный класс (любой простой)
-//TODO: Как тестировать исключения
-//TODO: Что такое фикстуры (методы setup и teerdown)
 //TODO: Что такое заглушки и притворщики mocks
-//TODO: Протестировать SiteModel
+//TODO: Реализовать тестирование NewsService через моки
+
+//TODO: как обойтись без require_once
+//TODO: как тестировать с использованием интерфейсов и трейтов DataBaseRepositoryTest
+//TODO: попробовать подключить bootstrap.php
+//TODO: посмотреть что такое PhphUnit.xml

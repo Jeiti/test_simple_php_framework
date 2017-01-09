@@ -6,8 +6,8 @@
  * Time: 22:55
  */
 
-namespace events;
-use events\Event;
+namespace app\events;
+use framework\Event;
 
 class EventHandler
 {

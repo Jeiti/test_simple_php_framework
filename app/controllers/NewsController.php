@@ -8,21 +8,23 @@
 
 namespace app\controllers;
 
-
 use framework\FrontController;
-use services\news_controller\NewsControllerService;
+use Pimple\Container;
+use app\services\news_controller\NewsControllerService;
+use framework\Controller;
 
-class NewsController
+class NewsController extends Controller
 {
-    private $service;
+    private $newsControllerService;
 
-    public function __construct()
+    public function __construct($_newsControllerService)
     {
-        $this->service = new NewsControllerService();
+//        $this->service = new NewsControllerService();
+        $this->newsControllerService = $_newsControllerService;
     }
 
     public function actionIndex()
     {
-        $this->service->getAllNewsFromDataBase();
+        $this->newsControllerService->getAllNewsFromDataBase();
     }
 }

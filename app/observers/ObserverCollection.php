@@ -6,8 +6,8 @@
  * Time: 3:17
  */
 
-namespace observers;
-use observers\Observer;
+namespace app\observers;
+use framework\Observer;
 
 
 class ObserverCollection

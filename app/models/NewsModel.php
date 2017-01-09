@@ -8,8 +8,11 @@
 
 namespace app\models;
 
+use framework\Model;
+use app\repositoryes\DataBaseRepositoryTraitWithQueryResult;
 
-class NewsModel
+
+class NewsModel extends Model
 {
-
+    use DataBaseRepositoryTraitWithQueryResult;
 }

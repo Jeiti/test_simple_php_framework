@@ -6,10 +6,8 @@
  * Time: 1:05
  */
 
-namespace exceptions;
-
-
-use events\Event;
+namespace app\exceptions;
+use framework\Event;
 
 class ExceptionForModelGetValue extends \Exception
 {

@@ -10,7 +10,7 @@ namespace framework;
 
 use ArrayObject;
 use \Exception;
-use exceptions\ExceptionForModelGetValue;
+use app\exceptions\ExceptionForModelGetValue;
 
 class Model extends \ActiveRecord\Model
 {

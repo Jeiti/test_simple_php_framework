@@ -2,12 +2,12 @@
 
 namespace app\controllers;
 use app\models\SiteModel;
-use events\Event;
-use events\EventHandler;
+use framework\Event;
+use app\events\EventHandler;
 use framework\Controller;
 use framework\Model;
-use services\site_controller\SiteControllerActionShowService;
-use services\site_controller\SiteControllerActionShowServiceEvents;
+use app\services\site_controller\SiteControllerActionShowService;
+use app\services\site_controller\SiteControllerActionShowServiceEvents;
 
 class SiteController extends Controller
 {

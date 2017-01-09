@@ -1,20 +1,25 @@
 <?php
 
 namespace framework;
-use framework\loggers\FileLogger;
-use framework\observers\ModelObservable;
+//use framework\loggers\FileLogger;
+//use framework\observers\ModelObservable;
+
 
 class FrontController
 {
-    private static $instance = NULL;
+//    private static $instance = NULL;
+    private $container;
 
-    public static function getInstance() {
-        if (!static::$instance)
-            static::$instance = new self();
-        return static::$instance;
+//    public static function getInstance() {
+//        if (!static::$instance)
+//        static::$instance = new self();
+//        return static::$instance;
+//    }
+
+    public function __construct($container)
+    {
+        $this->container = $container;
     }
-
-    private function __construct(){}
 
     private function __clone(){}
 
@@ -23,8 +28,13 @@ class FrontController
         $routes = explode("/", $url['path']);
         empty($routes[1])? $controllerName = 'site' : $controllerName = $routes[1];
         empty($routes[2])? $actionName = 'index' : $actionName = $routes[2];
-        $controllerFactoryName = ucfirst(strtolower($controllerName));
 
+
+        //$controllerName = 'news';
+        //$actionName = 'index';
+
+
+        $controllerFactoryName = ucfirst(strtolower($controllerName));
         $controllerName = "app\\controllers\\$controllerFactoryName";
         $controllerName .= 'Controller';
         $controllerFactoryName = "app\\factories\\${controllerFactoryName}ControllerFactory";
@@ -46,6 +56,7 @@ class FrontController
                 return $method->invoke($controller);
             }
         }
+
     }
 }
 

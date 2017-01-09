@@ -6,10 +6,10 @@
  * Time: 0:34
  */
 
-namespace services\site_controller;
-use events\EventHandler;
+namespace app\services\site_controller;
+use app\events\EventHandler;
 use app\controllers\SiteController;
-use events\Event;
+use framework\Event;
 
 
 class SiteControllerActionShowServiceEvents

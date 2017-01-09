@@ -1,10 +1,9 @@
 <?php
 namespace framework;
 
-
 class Controller
 {
-    protected $abstractFactory;
+    private $abstractFactory;
     protected $model;
     protected $view;
 
@@ -13,5 +12,6 @@ class Controller
         $this->abstractFactory = $controllerFactory;
         $this->model = $this->abstractFactory->createModel();
         $this->view = $this->abstractFactory->createView();
+
     }
 }
