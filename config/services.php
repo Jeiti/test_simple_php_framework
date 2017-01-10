@@ -8,20 +8,11 @@ use app\services\news_controller\NewsControllerService;
 use app\repositoryes\DataBaseRepository;
 use app\events\EventHandler;
 use Exception;
-use app\models\NewsModel;
 use app\observers\ObserverCollection;
-use app\controllers\NewsController;
+use app\repositoryes\ConnectionToDB;
+use framework\Event;
 
-//require_once 'vendor/autoload.php';
-//
-//
-//spl_autoload_register(function ($classname){
-//    $classname = str_replace("\\","/",$classname);
-//    $filename = $_SERVER['DOCUMENT_ROOT']."/$classname.php";
-//    if(file_exists($filename)){
-//        require_once ($filename);
-//    }
-//});
+require_once 'vendor/autoload.php';
 
 set_exception_handler(function (Exception $exception) {
     echo $exception->getMessage();
@@ -37,47 +28,33 @@ set_exception_handler(function (Exception $exception) {
 //Создаем DI-container (установлен Pimple)
 $container = new Container();
 
-//Создаем EventHandler для DataBaseRepository
-$container['EventHandler'] = function (Container $container){
-    return new EventHandler();
+$container['NewsObserver'] = function (Container $container) {return new NewsObserver();};
+
+$container['ObserverCollection'] = function (Container $container) {
+    return new ObserverCollection($container['NewsObserver']);
 };
 
-//Создаем NewsModel для DataBaseRepository
-$container['NewsModel'] = function (Container $container){
-    return new NewsModel();
+$container['EventHandler'] = function (Container $container)
+{
+    $handler = new EventHandler(new ObserverCollection($container['NewsObserver']));
+    $handler->on(ConnectionToDB::CONNECTION_WITH_DATA_BASE_START_EVENT, function (Event $event){
+        echo "DataBase connection has status -> " .ConnectionToDB::CONNECTION_WITH_DATA_BASE_START_EVENT. '<br>';
+    });
+    $handler->on(ConnectionToDB::CONNECTION_WITH_DATA_BASE_CLOSE_EVENT, function (Event $event){
+        echo "DataBase connection has status -> " .ConnectionToDB::CONNECTION_WITH_DATA_BASE_CLOSE_EVENT. '<br>';
+    });
+
+    return $handler;
 };
 
-//Создаем Observer для ObserverCollection
-$container['Observer'] = function (Container $container){
-    return new NewsObserver();
+$container['ConnectionToDB'] = function (Container $container){
+    return new ConnectionToDB($container['EventHandler']);
 };
 
-//Создаем ObserverCollection для DataBaseRepository
-$container['ObserverCollection'] = function (Container $container){
-    return new ObserverCollection(
-        $container['Observer']
-    );
-};
-
-//Создаем DataBaseRepository для NewsControllerService
 $container['DataBaseRepository'] = function (Container $container){
-    return new DataBaseRepository(
-        $container['EventHandler'],
-        $container['NewsModel'],
-        $container['ObserverCollection']
-    );
+    return new DataBaseRepository($container['ConnectionToDB']);
 };
 
-//Создаем NewsControllerService для NewsController
-$container['NewsControllerService'] = function(Container $container){
-    return new NewsControllerService(
-        $container['DataBaseRepository']
-    );
-};
-
-//Создаем NewsController
-$container['NewsController'] = function(Container $container){
-    return new NewsController(
-        $container['NewsControllerService']
-    );
+$container['NewsControllerService'] = function (Container $container){
+    return new NewsControllerService($container['DataBaseRepository']);
 };

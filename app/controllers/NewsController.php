@@ -19,8 +19,7 @@ class NewsController extends Controller
 
     public function __construct($_newsControllerService)
     {
-//        $this->service = new NewsControllerService();
-        $this->newsControllerService = $_newsControllerService;
+        $this->newsControllerService = $_newsControllerService['NewsControllerService'];
     }
 
     public function actionIndex()

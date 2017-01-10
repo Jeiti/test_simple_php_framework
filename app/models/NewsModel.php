@@ -9,10 +9,9 @@
 namespace app\models;
 
 use framework\Model;
-use app\repositoryes\DataBaseRepositoryTraitWithQueryResult;
 
 
 class NewsModel extends Model
 {
-    use DataBaseRepositoryTraitWithQueryResult;
+    public static $table_name = 'site';
 }

@@ -20,13 +20,11 @@ class NewsControllerService
 
     public function __construct(NewsRepositoryes $dataBaseRepository)
     {
-//        $repository = new DataBaseRepository();
         $this->repository = $dataBaseRepository;
     }
 
     public function getAllNewsFromDataBase()
     {
-//        $repository = new DataBaseRepository();
         $this->repository->getAllNews();
     }
 

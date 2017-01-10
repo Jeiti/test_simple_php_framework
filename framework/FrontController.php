@@ -7,14 +7,7 @@ namespace framework;
 
 class FrontController
 {
-//    private static $instance = NULL;
     private $container;
-
-//    public static function getInstance() {
-//        if (!static::$instance)
-//        static::$instance = new self();
-//        return static::$instance;
-//    }
 
     public function __construct($container)
     {
@@ -50,7 +43,7 @@ class FrontController
         // TODO: добавить вызов исключения, если метода в контроллере нет
         if ($controllerClass->isInstantiable()) {
             $controllerFactory = $controllerFactoryClass->newInstance();
-            $controller = $controllerClass->newInstance($controllerFactory);
+            $controller = $controllerClass->newInstance($this->container);
             if (method_exists($controllerName, $actionName)) {
                 $method = new \ReflectionMethod($controllerName, $actionName);
                 return $method->invoke($controller);

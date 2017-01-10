@@ -12,6 +12,12 @@ use framework\Event;
 class EventHandler
 {
     private $listeners = [];
+    private $observerCollection;
+
+    public function __construct($_observerCollection)
+    {
+        $this->observerCollection = $_observerCollection;
+    }
 
     public function on($name, $callback)
     {
@@ -34,6 +40,7 @@ class EventHandler
         if (isset($this->listeners[$name])) {
             foreach ($this->listeners[$name] as $listener) {
                 call_user_func($listener, $event);
+                $this->observerCollection->notify();
             }
         }
     }

@@ -14,6 +14,6 @@ class NewsObserver implements Observer
 {
     public function notify()
     {
-        echo 'NewsObserver is notified';
+        echo 'NewsObserver is notified <br>';
     }
 }

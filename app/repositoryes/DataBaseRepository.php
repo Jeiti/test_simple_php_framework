@@ -7,61 +7,29 @@
  */
 
 namespace app\repositoryes;
-use framework\Model;
-use app\observers\NewsObserver;
-use framework\Observer;
-use app\observers\ObserverCollection;
-use app\repositoryes\NewsRepositoryes;
-use app\exceptions\LinkException;
-use app\events\EventHandler;
-use framework\Event;
+use app\models\NewsModel;
 
 class DataBaseRepository implements NewsRepositoryes
 {
-//    use DataBaseRepositoryTraitWithQueryResult;
 
-    const CONNECTION_WITH_DATA_BASE_START_EVENT = 'linked';
-    const CONNECTION_WITH_DATA_BASE_CLOSE_EVENT = 'closed';
-
-    private $eventHandler;
-    private $linkToDataBase;
+    private $connection;
     private $query;
-    private $observerCollection;
-    private $model;
 
-    public function __construct(Event $_eventHandler, Model $_model, Observer $_observerCollection)
+    public function __construct($_connection)
     {
-        $this->eventHandler = $_eventHandler;
-        $this->model = $_model;
-        $this->observerCollection = $_observerCollection;
-
+        $this->connection = $_connection;
     }
 
     public function getAllNews()
     {
-//        $this->eventHandler = new EventHandler();
-        $this->eventHandler->on(self::CONNECTION_WITH_DATA_BASE_START_EVENT, function (Event $event){
-            echo "DataBase connection has status -> 'linked'" . '<br>';
-//            $this->observerCollection = new ObserverCollection(new NewsObserver());
-        });
-        $this->getLinkToDataBase();
-        $this->model->getTheQueryResult();
+        $this->getTheQueryResult();
         $this->processToQueryResult();
-        $this->eventHandler->on(self::CONNECTION_WITH_DATA_BASE_CLOSE_EVENT, function (Event $event){
-            echo "DataBase connection has status -> 'closed'" . '<br>';
-            $this->observerCollection->notify();
-        });
-        $this->closeConnect();
-        return true;
+        $this->connection->closeConnect();
     }
 
-    private function getLinkToDataBase()
+    private function getTheQueryResult()
     {
-        $this->linkToDataBase= mysqli_connect(DBHOSTNAME,DBUSER,DBPASSWORD,DBNAME);
-        if(!$this->linkToDataBase)
-            throw new LinkException ('Нет подключения к БД');
-
-        $this->eventHandler->trigger(self::CONNECTION_WITH_DATA_BASE_START_EVENT, new Event($this));
+        $this->query = mysqli_query($this->connection->getLinkToDataBase(),"SELECT * FROM site");
     }
 
     private function processToQueryResult()
@@ -70,12 +38,6 @@ class DataBaseRepository implements NewsRepositoryes
         {
             echo $row['id'] . ' - ' . $row['title'] . '<br>';
         }
-    }
-
-    private function closeConnect()
-    {
-        mysqli_close($this->linkToDataBase);
-        $this->eventHandler->trigger(self::CONNECTION_WITH_DATA_BASE_CLOSE_EVENT, new Event($this));
     }
 
 }
